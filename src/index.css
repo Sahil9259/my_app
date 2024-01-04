@@ -8,10 +8,7 @@ body {
   background-color: #5028A5;
   color: white;
 }
-.active{
-  color: white;
-  display: inline-block;
-}
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;

@@ -1,40 +1,29 @@
-// Navbar.js
 import React from 'react';
-import { NavLink } from 'react-router-dom';
-import styled from "styled-components";
+import { Link } from 'react-router-dom';
+import styled from 'styled-components';
+
+const NavbarContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+  padding: 16px;
+  background-color: #5028A5;
+  color: white;
+`;
+const NavbarLinks = styled.div`
+  display: flex;
+  gap: 16px;
+`;
 
 const Navbar = () => {
   return (
-    <Nav>
-      <ul>
-        <li>
-          <NavLink to="/">Home</NavLink>
-        </li>
-        <li>
-          <NavLink to="/bookmark">Bookmark</NavLink>
-        </li>
-      </ul>
-    </Nav>
+    <NavbarContainer>
+      <NavbarLinks>
+        <Link to="/">Home</Link>
+      </NavbarLinks>
+      <NavbarLinks>
+        <Link to="/bookmark">Bookmark</Link>
+      </NavbarLinks>
+    </NavbarContainer>
   );
 };
-
 export default Navbar;
-export const Nav = styled.nav`
-    height: 2 rem;
-    display: flex;
-    margin-top: 1rem;
-    flex-direction: row;
-    align-items: center;
-    ul, li {
-      list-style: none;
-    }
-    .cont{
-      display: flex;
-      flex-direction: row;
-      align-items: center;     
-    }
-    li{
-      colour: white;
-    }
-
-`;
