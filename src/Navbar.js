@@ -1,15 +1,40 @@
-import React from 'react'
+// Navbar.js
+import React from 'react';
+import { NavLink } from 'react-router-dom';
+import styled from "styled-components";
 
-export default function Navbar() {
-    return (
-        <>
-        <nav className="navbar navbar-expand-lg bg-body-tertiary bg-color-#5028A5">
-            <div className="container-fluid">
-                <a className="navbar-brand" href="#">Navbar</a>
-                <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span className="navbar-toggler-icon"></span>
-                </button>
-            </div>
-        </nav></>
-    )
-}
+const Navbar = () => {
+  return (
+    <Nav>
+      <ul>
+        <li>
+          <NavLink to="/">Home</NavLink>
+        </li>
+        <li>
+          <NavLink to="/bookmark">Bookmark</NavLink>
+        </li>
+      </ul>
+    </Nav>
+  );
+};
+
+export default Navbar;
+export const Nav = styled.nav`
+    height: 2 rem;
+    display: flex;
+    margin-top: 1rem;
+    flex-direction: row;
+    align-items: center;
+    ul, li {
+      list-style: none;
+    }
+    .cont{
+      display: flex;
+      flex-direction: row;
+      align-items: center;     
+    }
+    li{
+      colour: white;
+    }
+
+`;

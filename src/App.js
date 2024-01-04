@@ -1,4 +1,3 @@
-import './App.css';
 import Bookmark from './Bookmark';
 import Home from './Home';
 import {
@@ -6,11 +5,13 @@ import {
   Routes,
   Route
 } from "react-router-dom";
+import Navbar from './Navbar';
 
 function App() {
   return (
     <div className="App">
       <Router>
+        <Navbar />
         <div>
           <Routes>
             <Route exact path="/" element={<Home />} />
