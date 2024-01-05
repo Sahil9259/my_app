@@ -1,29 +1,43 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 
 const NavbarContainer = styled.div`
   display: flex;
   justify-content: space-between;
+  align-items: center;
   padding: 16px;
   background-color: #5028A5;
   color: white;
 `;
+
 const NavbarLinks = styled.div`
   display: flex;
   gap: 16px;
+  margin: 0rem 3rem;
+  margin-top: 1rem;
+`;
+
+const StyledNavLink = styled(NavLink)`
+  text-decoration: none;
+  color: white;
+
+  &.active {
+    font-weight: bold; 
+  }
 `;
 
 const Navbar = () => {
   return (
     <NavbarContainer>
       <NavbarLinks>
-        <Link to="/">Home</Link>
+        <StyledNavLink exact to="/" activeClassName="active">Home</StyledNavLink>
       </NavbarLinks>
       <NavbarLinks>
-        <Link to="/bookmark">Bookmark</Link>
+        <StyledNavLink to="/bookmark" activeClassName="active">Bookmark</StyledNavLink>
       </NavbarLinks>
     </NavbarContainer>
   );
 };
+
 export default Navbar;

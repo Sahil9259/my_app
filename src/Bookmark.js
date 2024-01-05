@@ -1,7 +1,18 @@
-import React from 'react'
+import React from 'react';
+import Card from './Card';
 
-export default function Bookmark() {
+const Bookmark = () => {
+  // Retrieve bookmarked quotes from local storage
+  const bookmarkedQuotes = JSON.parse(localStorage.getItem('bookmarkedQuotes')) || [];
   return (
-    <div>Bookmark</div>
-  )
-}
+    <div>
+      {bookmarkedQuotes.map((quote) => (
+        <div style={{margin:'1rem'}}>
+        <Card prop1 ={quote.content} prop2={quote.author} prop3={quote._id}/>
+        </div>
+      ))}
+    </div>
+  );
+};
+
+export default Bookmark;
