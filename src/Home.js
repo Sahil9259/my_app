@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import ResponsiveCard from './ResponsiveCard';
 import axios from 'axios';
 
@@ -6,35 +6,45 @@ export default function Home() {
   const [message, setMessage] = useState(null);
   const [temp, setTemp] = useState("random");
   const [tempDown, setTempDown] = useState(" ");
+  
   const handleSelectChange = (event) => {
     setTempDown(event.target.value);
   };
-  useEffect(() => {
-    const fetchQuote = async () => {
-      try {
-        let response;
-        if (temp === 'random' || temp === " ") {
-          response = await axios.get(`https://api.quotable.io/quotes/random`);
-        } else {
-          response = await axios.get(`https://api.quotable.io/quotes/random?tags=${temp}`);
-        }
-        const [singleQuote] = response.data;
-        setMessage(singleQuote);
-      } catch (error) {
-        console.error('Error fetching quote:', error);
+
+  const fetchQuote = useCallback(async () => {
+    try {
+      let response;
+      if (temp === 'random' || temp === " ") {
+        response = await axios.get(`https://api.quotable.io/quotes/random`);
+      } else {
+        response = await axios.get(`https://api.quotable.io/quotes/random?tags=${temp}`);
       }
+      const [singleQuote] = response.data;
+      setMessage(singleQuote);
+    } catch (error) {
+      console.error('Error fetching quote:', error);
+    }
+  }, [temp]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      await fetchQuote();
     };
-    fetchQuote();
-  }, [])
+
+    fetchData();
+  }, [fetchQuote]);
 
   const handleFetchNextQuote = async () => {
     try {
-      setTemp(tempDown)
-      fetchQuote();
+      setTemp(tempDown);
+
+      // Call fetchQuote here as well
+      await fetchQuote();
     } catch (error) {
       console.error('Error fetching quote:', error);
     }
   };
+
 
   return (
     <>
