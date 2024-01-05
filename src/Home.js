@@ -4,11 +4,9 @@ import ResponsiveCard from './ResponsiveCard';
 export default function Home() {
   const [message, setMessage] = useState("random");
   const [temp, setTemp] = useState("random");
-
   const handleSelectChange = (event) => {
     setTemp(event.target.value);
   };
-
   const handleFetchNextQuote = async () => {
     try {
       const newMessage = temp === " " ? "random" : temp;
