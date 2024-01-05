@@ -11,7 +11,7 @@ export default function Home() {
 
   const handleFetchNextQuote = async () => {
     try {
-      const newMessage = temp == " " ? "random" : temp;
+      const newMessage = temp === " " ? "random" : temp;
       setMessage(newMessage);
       setTemp(" ");
     } catch (error) {
