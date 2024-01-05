@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import React, { useState } from 'react';
+
 import styled from 'styled-components';
 
 import icon from './image/add.png';
@@ -45,58 +45,39 @@ const CardContent = styled.div`
   }
 `;
 
-const ResponsiveCard = ({ message }) => {
-  const [quote, setQuote] = useState(null);
+const ResponsiveCard = ({ messageId, content, author }) => {
   const [isBookmarked, setIsBookmarked] = useState(false);
-
-  useEffect(() => {
-    const fetchQuote = async () => {
-      try {
-        let response;
-        if (message === 'random') {
-          response = await axios.get(`https://api.quotable.io/quotes/random`);
-        } else {
-          response = await axios.get(`https://api.quotable.io/quotes/random?tags=${message}`);
-        }
-
-        const [singleQuote] = response.data;
-        setQuote(singleQuote);
-      } catch (error) {
-        console.error('Error fetching quote:', error);
-      }
-    };
-
-    fetchQuote();
-  }, [message]);
 
   const handleBookmarkClick = () => {
     setIsBookmarked(!isBookmarked);
+    const quote = { _id: messageId, content, author };
+
     if (!isBookmarked) {
-        const bookmarkedQuotes = JSON.parse(localStorage.getItem('bookmarkedQuotes')) || [];
-        bookmarkedQuotes.push(quote);
-        localStorage.setItem('bookmarkedQuotes', JSON.stringify(bookmarkedQuotes));
-      } else {
-        const bookmarkedQuotes = JSON.parse(localStorage.getItem('bookmarkedQuotes')) || [];
-        const updatedBookmarks = bookmarkedQuotes.filter((q) => q._id !== quote._id);
-        localStorage.setItem('bookmarkedQuotes', JSON.stringify(updatedBookmarks));
-      }
+      const bookmarkedQuotes = JSON.parse(localStorage.getItem('bookmarkedQuotes')) || [];
+      bookmarkedQuotes.push(quote);
+      localStorage.setItem('bookmarkedQuotes', JSON.stringify(bookmarkedQuotes));
+    } else {
+      const bookmarkedQuotes = JSON.parse(localStorage.getItem('bookmarkedQuotes')) || [];
+      const updatedBookmarks = bookmarkedQuotes.filter((q) => q._id !== messageId);
+      localStorage.setItem('bookmarkedQuotes', JSON.stringify(updatedBookmarks));
+    }
   };
 
   return (
     <CardContainer>
       <Card>
         <CardContent>
-          {quote ? (
-            <div key={quote._id}>
-              <p>{quote.content}</p>
+          {messageId ? (
+            <div key={messageId}>
+              <p>{content}</p>
               <div className='foot'>
-              <h6>- {quote.author}</h6>
-              <img
-                src={!isBookmarked ? icon : icon2}
-                alt="Bookmark Icon"
-                style={{ width: '24px', height: '24px', cursor: 'pointer' }}
-                onClick={handleBookmarkClick}
-              />
+                <h6>- {author}</h6>
+                <img
+                  src={!isBookmarked ? icon : icon2}
+                  alt="Bookmark Icon"
+                  style={{ width: '24px', height: '24px', cursor: 'pointer' }}
+                  onClick={handleBookmarkClick}
+                />
               </div>
             </div>
           ) : (

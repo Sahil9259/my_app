@@ -31,10 +31,10 @@ const Navbar = () => {
   return (
     <NavbarContainer>
       <NavbarLinks>
-        <StyledNavLink exact to="/" activeClassName="active">Home</StyledNavLink>
+        <StyledNavLink to="/" activeclassname="active">Home</StyledNavLink>
       </NavbarLinks>
       <NavbarLinks>
-        <StyledNavLink to="/bookmark" activeClassName="active">Bookmark</StyledNavLink>
+        <StyledNavLink to="/bookmark" activeclassname="active">Bookmark</StyledNavLink>
       </NavbarLinks>
     </NavbarContainer>
   );

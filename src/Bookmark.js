@@ -2,7 +2,6 @@ import React from 'react';
 import Card from './Card';
 
 const Bookmark = () => {
-  // Retrieve bookmarked quotes from local storage
   const bookmarkedQuotes = JSON.parse(localStorage.getItem('bookmarkedQuotes')) || [];
   return (
     <div>
