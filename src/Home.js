@@ -9,21 +9,21 @@ export default function Home() {
   const handleSelectChange = (event) => {
     setTempDown(event.target.value);
   };
-  const fetchQuote = async () => {
-    try {
-      let response;
-      if (temp === 'random' || temp === " ") {
-        response = await axios.get(`https://api.quotable.io/quotes/random`);
-      } else {
-        response = await axios.get(`https://api.quotable.io/quotes/random?tags=${temp}`);
-      }
-      const [singleQuote] = response.data;
-      setMessage(singleQuote);
-    } catch (error) {
-      console.error('Error fetching quote:', error);
-    }
-  };
   useEffect(() => {
+    const fetchQuote = async () => {
+      try {
+        let response;
+        if (temp === 'random' || temp === " ") {
+          response = await axios.get(`https://api.quotable.io/quotes/random`);
+        } else {
+          response = await axios.get(`https://api.quotable.io/quotes/random?tags=${temp}`);
+        }
+        const [singleQuote] = response.data;
+        setMessage(singleQuote);
+      } catch (error) {
+        console.error('Error fetching quote:', error);
+      }
+    };
     fetchQuote();
   }, [])
 
@@ -45,7 +45,7 @@ export default function Home() {
             content={message.content}
             author={message.author}
           />
-        ): (
+        ) : (
           <p>Loading...</p>
         )}
         <select id="messageDropdown" onChange={handleSelectChange} value={tempDown} style={{ margin: '1.5rem', marginTop: '3rem', borderRadius: '3rem', width: '100%', maxWidth: '200px' }}>
