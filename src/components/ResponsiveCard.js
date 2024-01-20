@@ -1,9 +1,7 @@
 import React, { useState } from 'react';
-
 import styled from 'styled-components';
-
-import icon from './image/add.png';
-import icon2 from './image/remove.png';
+import icon from '../image/add.png';
+import icon2 from '../image/remove.png';
 
 const CardContainer = styled.div`
   display: flex;

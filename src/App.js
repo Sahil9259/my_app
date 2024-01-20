@@ -1,5 +1,5 @@
-import Bookmark from './Bookmark';
-import Home from './Home';
+import Bookmark from './pages/Bookmark';
+import Home from './pages/Home';
 import {
   BrowserRouter as Router,
   Routes,

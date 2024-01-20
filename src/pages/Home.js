@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import ResponsiveCard from './ResponsiveCard';
+import ResponsiveCard from '../components/ResponsiveCard';
 import axios from 'axios';
 
 export default function Home() {
